@@ -5,9 +5,15 @@
     $gracz=("SELECT * FROM users, statystyki WHERE users.ID=statystyki.ID AND users.Username='$_SESSION[Uzytkownik]'LIMIT 1 ");
     $misja=mysqli_query($conn, $gracz);
     $misja=mysqli_fetch_assoc($misja);
+    
+    $now = new DateTime();
+    
+    $time = (POBRAĆ Z BAZY);
 
-
-    if(isset($_GET['pts']))
+    $now->modify('-2 minutes');
+    
+    if ($now > $time) {
+         if(isset($_GET['pts']))
     {
         if($_GET['pts']==1)
         {
@@ -36,6 +42,10 @@
             echo 'Zyskales 150pkt Doswiadczenia!<br>';
             require('Leveling.php');
         }
+    
+    }
+
+   
     }
 ?>
 <a href="Misje.php?action=miesja&pts=1">Rozpoczynam-</a> Misja łatwa 2:00min<br>
